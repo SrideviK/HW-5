@@ -33,7 +33,8 @@
         <!-- content -->
         <div data-role="content" data-theme='b'>
             <h3>Welcome to our portal!</h3><br>
-            You save and maintain details of your favpurite sports
+            <h3>You save and maintain details of your favorite sport team</h3>
+            <img class="center" id="image1" src="./images/sports.jpg" alt="picture of sport balls" class="center" >
         </div>
     
         <!-- notes footer -->
@@ -57,6 +58,7 @@
         </div><!-- /navbar -->
         
             <h2>Enter your favourite team details</h2>
+            
         </div>
     
         <!-- content -->
@@ -69,6 +71,7 @@
             <option value="Basketball">Basketball</option>
             <option value="Baseball">Baseball</option>
             <option value="Cricket">Cricket</option>
+            <option value="Volleyball">Volleyball</option>
         </select>
 
        
@@ -77,6 +80,9 @@
 
             Enter Team Player Name <br />
         <input type="text" value="" id="playername" />
+
+            Year founded <br />
+        <input type="text" value="" id="year" />
 
         
         <input type="button" value="Save" id="buttonSave" />
@@ -110,6 +116,7 @@
         <div data-role="content" data-theme='b'>
             <p id="default-text"> You did not save any details</p>
            <ul id="myul"></ul>
+          
         </div>
     
         <!-- notes footer -->
