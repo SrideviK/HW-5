@@ -16,3 +16,9 @@ h3{
   margin-right: auto;
   width: 40%;
 }
+#select-sport{
+    display: none;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
