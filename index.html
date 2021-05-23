@@ -120,7 +120,24 @@
         <div data-role="content" data-theme='b'>
             <p id="default-text1"> You did not save any details</p>
            <ul id="myul"></ul>
-          
+
+
+           <div id="select-sport">
+            <label for="subSetType">Sort by Sport:</label>
+            <select name="selectSubsetType-type" id="subSetType">
+                <option disabled selected value> -- select an option -- </option>
+                <option value="Soccer">Soccer</option>
+                <option value="Football">Football</option>
+                <option value="Basketball">Basketball</option>
+                <option value="Baseball">Baseball</option>
+                <option value="Cricket">Cricket</option>
+                <option value="Volleyball">Volleyball</option>
+            </select>
+            <input type="button" value="Show Selected" id="Show" />
+        </div>
+
+
+
         </div>
     
         <!-- notes footer -->
@@ -149,7 +166,6 @@
     
         <!-- content -->
         <div data-role="content" data-theme='b'>
-            <p id="default-text2"> You did not save any details</p>
 
             <!--details to display based on current id-->
             <p id="teamm"></p>
@@ -160,19 +176,7 @@
 
             <!--end of details-->
 
-            <div id="select-sport">
-            <label for="subSetType">Sort by Sport:</label>
-            <select name="selectSubsetType-type" id="subSetType">
-                <option disabled selected value> -- select an option -- </option>
-                <option value="Soccer">Soccer</option>
-                <option value="Football">Football</option>
-                <option value="Basketball">Basketball</option>
-                <option value="Baseball">Baseball</option>
-                <option value="Cricket">Cricket</option>
-                <option value="Volleyball">Volleyball</option>
-            </select>
-            <input type="button" value="Show Selected" id="Show" />
-        </div>
+            
         <div id="selected-list">
 
         </div>

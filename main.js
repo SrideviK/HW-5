@@ -3,6 +3,7 @@ let selectedType = "";
 let subSetType="";
 let subList=[];
 
+
 // define a constructor to create sport objects
 let SportObject = function (pTeamName, pPlayerName, pSport, pYear, pUrl) {
     this.ID = sportsArray.length; // auto assign id
@@ -13,7 +14,7 @@ let SportObject = function (pTeamName, pPlayerName, pSport, pYear, pUrl) {
     this.url = pUrl;
 }
 
-// test data
+//test data
 // sportsArray.push(new SportObject("Seahawks", "Russel Wilson", "Football", 2020, "https://www.youtube.com/watch?v=-0-2as8ugrI"));
 // sportsArray.push(new SportObject("Lakers", "LeBron James", "Basketball", 2021, "https://www.youtube.com/watch?v=AA94L3ut0Ng"));
 // sportsArray.push(new SportObject("Bucaneers", "Tom Brady", "Football", 2021, "https://www.youtube.com/watch?v=O7Di8ZpJnm8"));
@@ -31,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         console.log("current url == " + video);
 
         document.getElementById("default-text1").style.display="none";
-        document.getElementById("default-text2").style.display="none";
         document.getElementById("select-sport").style.display="flex";
 
         if (playername != "" && teamname != "" && year != "" && selectedType != "" && video != ""){
@@ -66,8 +66,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.getElementById('currentID').innerHTML = "Team Id: " + sportsArray[arrayPointer].ID;
         console.log("current url = " + sportsArray[arrayPointer].url);
         document.getElementById('highlightUrl').innerHTML = sportsArray[arrayPointer].url;
-        // hides previously diplayed sports
-        document.getElementById("selected-list").style.display="none";
     });
 
     $(document).bind("change", "#subSetType", function (event, ui) {
@@ -105,48 +103,51 @@ function createList() {
                     + "<br><br>";
         myul.appendChild(li);
     });
-
+    actiavteElements();
     // makes li active
+   
+};
+
+function createSubList(sport){
+
+    let myul = document.getElementById("myul");
+    myul.innerHTML="";
+
+    sportsArray.forEach(function (element,) { 
+
+        if(element.sport==sport){
+        let li = document.createElement('li');
+        li.classList.add('oneSport'); // adding a class name to each one as a way of creating a collection
+        li.setAttribute("data-parm",element.ID);
+        li.innerHTML = element.sport + ":" 
+                    + "<br> &emsp;Your Favourite team is - " + element.team 
+                    + "<br><br>";
+        myul.appendChild(li);
+        }
+    });
+
+    if(myul.childElementCount==0){
+        let p = document.createElement('p');
+            p.innerHTML="No details have been added for this sport";
+            myul.appendChild(p);
+    }
+    else{
+        actiavteElements();
+    }  
+};
+
+function actiavteElements(){
+
     let liArray = document.getElementsByClassName('oneSport');
+
     Array.from(liArray).forEach(function(element,){
+
         element.addEventListener('click',function(){
             let parm = this.getAttribute('data-parm');
             document.getElementById('IDparmHere').innerHTML = parm;
             document.location.href="index.html#displaysubset";
-            //alert('hi. this is id: ' + parm);
         });
     });
 };
 
-function createSubList(sport){
-    let selected= document.getElementById("selected-list");
-    selected.style.display="block";
-    while (selected.firstChild) {    
-        selected.removeChild(selected.firstChild);
-    };
-    let ul = document.createElement('ul');
-    sportsArray.forEach(function (element,) { 
-
-        if(element.sport==sport){
-
-            let li = document.createElement('li');
-            li.innerHTML = element.sport + ":" 
-            + "<br> &emsp;Your Favourite team is - " + element.team 
-            + "<br> &emsp;Your favourite player is - " + element.player 
-            + "<br> &emsp;They were founded in "+ element.year
-            + "<br> &emsp;Team ID - " + element.ID
-            + "<br><br>";
-        ul.appendChild(li);
-        }  
-    });
-
-    if(ul.childElementCount==0){
-        let p = document.createElement('p');
-        p.innerHTML="No details have been added for this sport";
-        selected.appendChild(p);
-    }
-    else{
-        selected.appendChild(ul);
-    }  
-}
 
