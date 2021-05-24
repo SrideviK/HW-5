@@ -3,7 +3,6 @@ let selectedType = "";
 let subSetType="";
 let subList=[];
 
-
 // define a constructor to create sport objects
 let SportObject = function (pTeamName, pPlayerName, pSport, pYear, pUrl) {
     this.ID = sportsArray.length; // auto assign id
@@ -18,7 +17,6 @@ let SportObject = function (pTeamName, pPlayerName, pSport, pYear, pUrl) {
 // sportsArray.push(new SportObject("Seahawks", "Russel Wilson", "Football", 2020, "https://www.youtube.com/watch?v=-0-2as8ugrI"));
 // sportsArray.push(new SportObject("Lakers", "LeBron James", "Basketball", 2021, "https://www.youtube.com/watch?v=AA94L3ut0Ng"));
 // sportsArray.push(new SportObject("Bucaneers", "Tom Brady", "Football", 2021, "https://www.youtube.com/watch?v=O7Di8ZpJnm8"));
-
 
 document.addEventListener("DOMContentLoaded", function (event) {
 
@@ -61,8 +59,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
         console.log("localID = " + localID);
         let arrayPointer = GetArrayPointer(localID);
         console.log("arrayPointer = " + arrayPointer);
-        document.getElementById('teamm').innerHTML = "Team: " + sportsArray[arrayPointer].team;
-        document.getElementById('playerr').innerHTML = "Player: " + sportsArray[arrayPointer].player;
+        document.getElementById('team').innerHTML = "Team: " + sportsArray[arrayPointer].team;
+        document.getElementById('player').innerHTML = "Player: " + sportsArray[arrayPointer].player;
         document.getElementById('currentID').innerHTML = "Team Id: " + sportsArray[arrayPointer].ID;
         console.log("current url = " + sportsArray[arrayPointer].url);
         document.getElementById('highlightUrl').innerHTML = sportsArray[arrayPointer].url;
@@ -94,18 +92,11 @@ function GetArrayPointer(localID) {
 function createList() {
     let myul = document.getElementById("myul");
     myul.innerHTML="";
-    sportsArray.forEach(function (element,) {   
-        let li = document.createElement('li');
-        li.classList.add('oneSport'); // adding a class name to each one as a way of creating a collection
-        li.setAttribute("data-parm",element.ID);
-        li.innerHTML = element.sport + ":" 
-                    + "<br> &emsp;Your Favourite team is - " + element.team 
-                    + "<br><br>";
-        myul.appendChild(li);
+    sportsArray.forEach(function (element,) {
+        displayElements(element);
     });
-    actiavteElements();
     // makes li active
-   
+    actiavteElements();
 };
 
 function createSubList(sport){
@@ -116,13 +107,10 @@ function createSubList(sport){
     sportsArray.forEach(function (element,) { 
 
         if(element.sport==sport){
-        let li = document.createElement('li');
-        li.classList.add('oneSport'); // adding a class name to each one as a way of creating a collection
-        li.setAttribute("data-parm",element.ID);
-        li.innerHTML = element.sport + ":" 
-                    + "<br> &emsp;Your Favourite team is - " + element.team 
-                    + "<br><br>";
-        myul.appendChild(li);
+            displayElements(element);
+        }
+        else  if(sport == "All") {
+            displayElements(element);
         }
     });
 
@@ -149,5 +137,15 @@ function actiavteElements(){
         });
     });
 };
+
+function displayElements(element){
+    let li = document.createElement('li');
+    li.classList.add('oneSport'); // adding a class name to each one as a way of creating a collection
+    li.setAttribute("data-parm",element.ID);
+    li.innerHTML = element.sport + ":" 
+                + "<br> &emsp;Your Favourite team is - " + element.team 
+                + "<br><br>";
+    myul.appendChild(li);
+}
 
 
